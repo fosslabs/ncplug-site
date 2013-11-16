@@ -1,0 +1,7 @@
+.hsenv/
+*.hi
+*.o
+*_flymake.hs
+TAGS
+_cache/
+_site/
