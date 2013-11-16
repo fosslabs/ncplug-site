@@ -19,7 +19,7 @@ main = hakyll $ do
       route   idRoute
       compile copyFileCompiler
 
-    match (fromList ["about.rst", "contact.markdown"]) $ do
+    match (fromList ["about.rst"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
@@ -47,6 +47,13 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
 
+    match "contact.html" $ do
+      route idRoute
+      compile $ do
+        getResourceBody
+          >>= applyAsTemplate defaultContext
+          >>= loadAndApplyTemplate "templates/default.html" defaultContext
+          >>= relativizeUrls
 
     match "index.html" $ do
         route idRoute
@@ -54,7 +61,7 @@ main = hakyll $ do
             posts <- recentFirst =<< loadAll "posts/*"
             let indexCtx =
                     listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Home"                `mappend`
+                    constField "title" "Главная"             `mappend`
                     defaultContext
 
             getResourceBody
