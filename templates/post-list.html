@@ -1,0 +1,18 @@
+  <ul class="news">
+    $for(posts)$
+      <li>
+        <div class="date"><p>$date$</p></div>
+        <h2>$title$ 
+          $if(author)$
+            <span>$author$</span>
+          $endif$
+        </h2>
+        <p>
+          $if(teaser)$
+            $teaser$ 
+          $endif$
+          <span><a href="$url$" class="more">Читать далее...</a></span>
+        </p>
+      </li>
+    $endfor$
+  </ul>
