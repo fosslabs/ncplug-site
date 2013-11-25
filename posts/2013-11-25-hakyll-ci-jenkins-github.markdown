@@ -1,5 +1,6 @@
 ---
 title: Непрерывная интеграция сайта на Hakyll
+author: Мансур Зиятдинов
 tags: github, jenkins, hakyll, hsenv, continous integration
 ---
 
