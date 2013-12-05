@@ -5,6 +5,13 @@ import           Hakyll
 
 
 --------------------------------------------------------------------------------
+ncplugFeedConf :: FeedConfiguration
+ncplugFeedConf = FeedConfiguration { feedTitle = "NCPLUG"
+                                   , feedDescription = "Non-conforming Programming Languages User Group posts"
+                                   , feedAuthorName = "NCPLUG"
+                                   , feedAuthorEmail = "ncplug@fosslabs.ru"
+                                   , feedRoot = "http://ncplug.fosslabs.ru" }
+--------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
     match "images/*" $ do
@@ -30,6 +37,7 @@ main = hakyll $ do
         compile $ pandocCompiler
           >>= saveSnapshot "content"
           >>= loadAndApplyTemplate "templates/post.html"    postCtx
+          >>= saveSnapshot "rsscontent"
           >>= loadAndApplyTemplate "templates/default.html" postCtx
           >>= relativizeUrls
 
@@ -46,6 +54,14 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
+
+    create ["feed.rss"] $ do
+      route idRoute
+      compile $ do
+        let feedCtx = postCtx `mappend` bodyField "description"
+        posts <- fmap (take 10) . recentFirst =<<
+                 loadAllSnapshots "posts/*" "content"
+        renderRss ncplugFeedConf feedCtx posts
 
     match "contact.html" $ do
       route idRoute
