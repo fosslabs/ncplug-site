@@ -151,6 +151,7 @@ img {
 	width: 880px;
 	margin: 0 auto;
 	padding: 54px 40px;
+	text-align: justify;
 }
 h1 {
 	color: #3e3e3e;
@@ -400,4 +401,12 @@ p a {
 }
 #connect a.tumbler:hover {
 	background-position: -40px -120px;
+}
+
+/*------CUSTOMIZATION----------*/
+div.info {
+    color: #555;
+    font-size: 14px;
+    font-style: italic;
+    margin: 0 0 30px;
 }
