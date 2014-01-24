@@ -13,6 +13,13 @@
 	font-weight: normal;
 	font-style: normal;
 }
+/* the fix for fonts rendering in Chrome from Windows 8 */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+        font-family: 'OpenSans';
+        src: url('../fonts/OpenSans-Regular.svg') format('svg');
+    }
+}
 body {
 	background-color: #fff;
 	font-family: 'OpenSans';
