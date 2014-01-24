@@ -2,14 +2,14 @@
 @font-face {
 	font-family: 'OpenSans';
 	src: url('../fonts/OpenSans-Regular.eot');
-	src: local('☺'), url('../fonts/OpenSans-Regular.woff') format('woff'), url('../fonts/OpenSans-Regular.ttf') format('truetype'), url('../fonts/OpenSans-Regular.svg') format('svg');
+	src: local('☺'), url('../fonts/OpenSans-Regular.svg') format('svg'), url('../fonts/OpenSans-Regular.woff') format('woff'), url('../fonts/OpenSans-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 @font-face {
 	font-family: 'Play';
 	src: url('../fonts/Play-Regular.eot');
-	src: local('☺'), url('../fonts/Play-Regular.woff') format('woff'), url('../fonts/Play-Regular.ttf') format('truetype'), url('../fonts/Play-Regular.svg') format('svg');
+	src: local('☺'), url('../fonts/Play-Regular.svg') format('svg'), url('../fonts/Play-Regular.woff') format('woff'), url('../fonts/Play-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
