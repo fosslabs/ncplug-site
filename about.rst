@@ -2,7 +2,7 @@
 title: О нас
 ---
 
-NCPLUG --- Non-conforming Programming Languages User Group.
+NCPLUG --- Non-Conforming Programming Languages User Group.
 
 Мы --- группа энтузиастов, которые не хотят останавливаться.
 Мы не считаем, что достигли мастерства. Мы хотим большего. Постоянно.
