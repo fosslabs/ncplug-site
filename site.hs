@@ -12,8 +12,11 @@ ncplugFeedConf = FeedConfiguration { feedTitle = "NCPLUG"
                                    , feedAuthorEmail = "ncplug@fosslabs.ru"
                                    , feedRoot = "http://ncplug.fosslabs.ru" }
 --------------------------------------------------------------------------------
+conf :: Configuration
+conf = defaultConfiguration { deployCommand = "cp -Rv _site/* /site" }
+--------------------------------------------------------------------------------
 main :: IO ()
-main = hakyll $ do
+main = hakyllWith conf $ do
     match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
@@ -58,7 +61,7 @@ main = hakyll $ do
     create ["feed.rss"] $ do
       route idRoute
       compile $ do
-        let feedCtx = postCtx `mappend` bodyField "description"
+        let feedCtx = postCtx `mappend` teaserField "description" "content"
         posts <- fmap (take 10) . recentFirst =<<
                  loadAllSnapshots "posts/*" "content"
         renderRss ncplugFeedConf feedCtx posts
@@ -70,6 +73,32 @@ main = hakyll $ do
           >>= applyAsTemplate defaultContext
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
+
+    -- match "fp-course/*" $ do
+    --   route $ setExtension "html"
+    --   compile $ pandocCompiler
+    --       >>= saveSnapshot "fp-content"
+    --       >>= loadAndApplyTemplate "templates/post.html"    postCtx
+    --       >>= saveSnapshot "fp-rss-content"
+    --       >>= loadAndApplyTemplate "templates/default.html" postCtx
+    --       >>= relativizeUrls
+
+    -- create ["fp-course.pdf"] $ do
+    --   route idRoute
+    --   compile $ pandocCompiler
+
+    -- create ["fp-course.html"] $ do
+    --   route idRoute
+    --   compile $ do
+    --     lessons <- recentFirst =<< loadAll "fp-course/*"
+    --     let courseCtx =
+    --           listField "lessons" postCtx (return lessons) `mappend`
+    --           constField "title" "FP Course"               `mappend`
+    --           defaultContext
+    --     makeItem ""
+    --       >>= loadAndApplyTemplate "templates/fp-course.html" courseCtx
+    --       >>= loadAndApplyTemplate "templates/default.html"   courseCtx
+    --       >>= relativizeUrls
 
     match "index.html" $ do
         route idRoute
