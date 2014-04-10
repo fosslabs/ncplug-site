@@ -2,16 +2,23 @@
 @font-face {
 	font-family: 'OpenSans';
 	src: url('../fonts/OpenSans-Regular.eot');
-	src: local('☺'), url('../fonts/OpenSans-Regular.woff') format('woff'), url('../fonts/OpenSans-Regular.ttf') format('truetype'), url('../fonts/OpenSans-Regular.svg') format('svg');
+	src: local('☺'), url('../fonts/OpenSans-Regular.svg') format('svg'), url('../fonts/OpenSans-Regular.woff') format('woff'), url('../fonts/OpenSans-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 @font-face {
 	font-family: 'Play';
 	src: url('../fonts/Play-Regular.eot');
-	src: local('☺'), url('../fonts/Play-Regular.woff') format('woff'), url('../fonts/Play-Regular.ttf') format('truetype'), url('../fonts/Play-Regular.svg') format('svg');
+	src: local('☺'), url('../fonts/Play-Regular.svg') format('svg'), url('../fonts/Play-Regular.woff') format('woff'), url('../fonts/Play-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
+}
+/* the fix for fonts rendering in Chrome from Windows 8 */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+        font-family: 'OpenSans';
+        src: url('../fonts/OpenSans-Regular.svg') format('svg');
+    }
 }
 body {
 	background-color: #fff;
@@ -151,6 +158,7 @@ img {
 	width: 880px;
 	margin: 0 auto;
 	padding: 54px 40px;
+	text-align: justify;
 }
 h1 {
 	color: #3e3e3e;
@@ -400,4 +408,12 @@ p a {
 }
 #connect a.tumbler:hover {
 	background-position: -40px -120px;
+}
+
+/*------CUSTOMIZATION----------*/
+div.info {
+    color: #555;
+    font-size: 14px;
+    font-style: italic;
+    margin: 0 0 30px;
 }
